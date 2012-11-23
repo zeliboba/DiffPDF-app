@@ -11,17 +11,18 @@
 <li><a href="#opt">The Options Dialog</a></li>
 <li><a href="#dock">Dock Windows</a></li>
 <li><a href="#cli">Command Line Usage</a></li>
-<li><a href="#ack">Acknowledgements</a></li>
-<li><a href="#aut">Author</a></li>
 </ul>
 
 <h3 id="bas">Basic Usage</h3>
-<p><p>Click the <b>File #1</b> button 
-to choose one PDF file and then the <b>File #2</b> button to choose 
-another (ideally very similar) PDF file, then click the 
-<b>Compare</b> button to perform the comparison, and when 
-that's finished, navigate through the pairs of differing pages 
-using the <b>View</b> combobox. 
+<p><p>Click the <b>File #1</b> button to choose one PDF file and then
+the <b>File #2</b> button to choose another (ideally very similar) PDF
+file, then click the <b>Compare</b> button to perform the comparison,
+and when that's finished, navigate through the pairs of differing pages
+using the <b>View</b> combobox or using the <b>Previous</b> and
+<b>Next</b> buttons. Alternatively, drag two files&mdash;either
+separately or together&mdash;and drop them onto <font
+color="darkgreen">DiffPDF</font>'s view panels, then click the
+<b>Compare</b> button.
 
 <h3 id="cmp">The Compare Button</h3>
 <p>
@@ -123,30 +124,18 @@ immediately compare them in Words mode, or in Appearance mode
 if their names are preceded with <tt>-a</tt> or 
 <tt>--appearance</tt> on the command line, 
 or in Characters mode if their names are preceded with <tt>-c</tt> or 
-<tt>--character</tt> on the command line.
+<tt>--character</tt> on the command line. Run 
+<font color="darkgreen">DiffPDF</font> with <tt>--help</tt> to see all
+the command line options.
 <p>If you're specifically looking for a command line PDF comparison 
 tool, e.g., for automated testing, try 
 <a href="http://www.qtrac/eu/comparepdf.html">comparepdf</a>.
 
-<p>There are also debugging options. Use <tt>--debug</tt> to be able to
-see the zones. Use <tt>--debug2</tt> and <tt>--debug3</tt> to write the
-texts in the order they are fed to the sequence matcher into temporary
-files (e.g., <tt>/tmp/page1.txt</tt>, etc.). The text reordering is done
-by the <tt>TextItems::columnZoneYxOrder()</tt> method in the
+<p>There are also debugging options. Use <tt>--debug=2</tt> and
+<tt>--debug=3</tt> to write the texts in the order they are fed to the
+sequence matcher into temporary files (e.g., <tt>/tmp/page1.txt</tt>,
+etc.). The text reordering is done by the
+<tt>TextItems::columnZoneYxOrder()</tt> method in the
 <tt>textitem.cpp</tt> file: suggestions for improvement are welcome!
 (Note that when using <tt>--debug3</tt> coordinates are output in
 <i>y</i>, <i>x</i> order.)
-
-<h3 id="ack">Acknowledgements</h3>
-<font color="darkgreen">DiffPDF</font> was inspired by an idea 
-from Jasmin Blanchette, and embodies many of his suggestions. 
-Thanks also to Steven Lee for building Windows versions, 
-Dirk Loss for building Mac OS X versions, and to David Paleino, the 
-original Debian packager. Thanks also to the many users who have 
-provided constructive and useful feedback, much of which has been 
-incorporated into the program. (See the <tt>CHANGES</tt> file.)
-
-<h3 id="aut">Author</h3>
-<p>I hope that you find <font color="darkgreen">DiffPDF</font> 
-useful and easy to work with&mdash;Mark Summerfield 
-(<a href="mailto:mark@qtrac.eu">mark@qtrac.eu</a>).

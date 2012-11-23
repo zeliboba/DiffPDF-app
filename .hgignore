@@ -1,6 +1,7 @@
 syntax: glob
 mailinglist.txt
 NOTES.txt
+*.qm
 *.lout
 diffpdf
 *.pdf

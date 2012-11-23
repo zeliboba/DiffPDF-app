@@ -39,11 +39,18 @@ users can get a compiler by installing Xcode; you'll need to get Qt and
 Poppler separately.
 
 1. Unpack the archive file, diffpdf-XXX.tar.gz
+    $ tar xvfz diffpdf-XXX.tar.gz
 2. Change directory to diffpdf-XXX
-3. Run qmake # On some systems, e.g., Fedora or Ubuntu, run qmake-qt4
-   On Mac OS X use: qmake spec=macx-g++
-4. Run make
-5. Copy or soft-link the diffpdf executable to somewhere on your PATH
+    $ cd diffpdf-XXX
+3. Run lrelease; on some sytems this might be called lrelease-qt4
+    $ lrelease diffpdf.pro
+4. Run qmake; on some systems, run qmake-qt4
+    $ qmake
+5. Run make
+    $ make
+6. Copy or soft-link the diffpdf executable to somewhere on your PATH
+7. Only the executable is needed; all the files that were unpacked or
+   generated can be safely deleted.
 
 That's it!
 
@@ -66,7 +73,7 @@ License
 =======
 
 This program was written by Mark Summerfield.
-Copyright (c) 2008-11 Qtrac Ltd. All rights reserved.
+Copyright (c) 2008-12 Qtrac Ltd. All rights reserved.
 
 This program is free software: you can redistribute it and/or modify it
 under the terms of the GNU General Public License as published by the
@@ -93,6 +100,7 @@ $ chmod -R u+w /usr/local/Cellar/poppler/
 $ curl -O http://www.qtrac.eu/diffpdf-1.5.0.tar.gz
 $ tar xvfz diffpdf-1.5.0.tar.gz
 $ cd diffpdf-1.5.0
+$ lrelease diffpdf.pro
 $ qmake spec=macx-g++
 $ make
 

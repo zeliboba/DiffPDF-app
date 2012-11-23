@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_HPP
 #define MAINWINDOW_HPP
 /*
-    Copyright (c) 2008-11 Qtrac Ltd. All rights reserved.
+    Copyright (c) 2008-12 Qtrac Ltd. All rights reserved.
     This program or module is free software: you can redistribute it
     and/or modify it under the terms of the GNU General Public License
     as published by the Free Software Foundation, either version 2 of
@@ -25,6 +25,8 @@
 #include <QMainWindow>
 #include <QPen>
 
+class Label;
+class LineEdit;
 class QBoxLayout;
 class QCheckBox;
 class QComboBox;
@@ -56,6 +58,8 @@ protected:
 private slots:
     void setFile1(QString filename=QString());
     void setFile2(QString filename=QString());
+    void setFiles1(const QStringList &filenames);
+    void setFiles2(const QStringList &filenames);
     void compare();
     void options();
     void save();
@@ -114,16 +118,16 @@ private:
             QLabel *label);
 
     QPushButton *setFile1Button;
-    QLineEdit *filename1LineEdit;
+    LineEdit *filename1LineEdit;
     QLabel *comparePages1Label;
     QLineEdit *pages1LineEdit;
-    QLabel *page1Label;
+    Label *page1Label;
     QScrollArea *area1;
     QPushButton *setFile2Button;
-    QLineEdit *filename2LineEdit;
+    LineEdit *filename2LineEdit;
     QLabel *comparePages2Label;
     QLineEdit *pages2LineEdit;
-    QLabel *page2Label;
+    Label *page2Label;
     QScrollArea *area2;
     QComboBox *compareComboBox;
     QLabel *compareLabel;

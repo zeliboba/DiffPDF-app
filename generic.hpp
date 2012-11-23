@@ -1,7 +1,7 @@
 #ifndef GENERIC_HPP
 #define GENERIC_HPP
 /*
-    Copyright (c) 2008-11 Qtrac Ltd. All rights reserved.
+    Copyright (c) 2008-12 Qtrac Ltd. All rights reserved.
     This program or module is free software: you can redistribute it
     and/or modify it under the terms of the GNU General Public License
     as published by the Free Software Foundation, either version 2 of
@@ -21,7 +21,6 @@
 class QColor;
 class QRectF;
 
-
 #if QT_VERSION >= 0x040600
 typedef QSharedPointer<Poppler::Document> PdfDocument;
 typedef QSharedPointer<Poppler::Page> PdfPage;
@@ -36,8 +35,7 @@ typedef QList<PdfTextBox> TextBoxList;
 enum InitialComparisonMode{CompareAppearance=0, CompareCharacters=1,
                            CompareWords=2};
 
-enum Debug{DebugOff, DebugShowZones, DebugShowZonesAndTexts,
-           DebugShowZonesAndTextsAndYX};
+enum Debug{DebugOff, DebugShowTexts, DebugShowTextsAndYX};
 
 const int DPI_FACTOR = 72;
 
@@ -83,6 +81,9 @@ QPixmap brushSwatch(const Qt::BrushStyle style, const QColor &color);
 QPixmap penStyleSwatch(const Qt::PenStyle style, const QColor &color);
 
 const TextBoxList getTextBoxes(PdfPage page);
+
+const QStringList strippedFilenames(const QString &filenames);
+const QRect resizeRect(const QRect &pageRect, const QSize &pixmapSize);
 
 /* // Not needed
 const int roundedToNearest(const int x, const int multiple)

@@ -4,5 +4,6 @@
 <file alias="left.png">images/left.png</file>
 <file alias="right.png">images/right.png</file>
 <file>help.html</file>
+<file>diffpdf_cz.qm</file>
 </qresource>
 </RCC>

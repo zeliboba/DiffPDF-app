@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2008-11 Qtrac Ltd. All rights reserved.
+    Copyright (c) 2008-12 Qtrac Ltd. All rights reserved.
     This program or module is free software: you can redistribute it
     and/or modify it under the terms of the GNU General Public License
     as published by the Free Software Foundation, either version 2 of
@@ -130,4 +130,37 @@ const TextBoxList getTextBoxes(PdfPage page)
         boxes.append(box_ptr);
     }
     return boxes;
+}
+
+
+const QStringList strippedFilenames(const QString &filenames)
+{
+    const QString FilePrefix("file://");
+    QStringList files = filenames.split("\n");
+    for (int i = 0; i < files.count(); ++i) {
+        QString &filename = files[i];
+        if (filename.startsWith(FilePrefix))
+            filename = filename.mid(FilePrefix.length());
+        filename = filename.trimmed();
+    }
+    return files;
+}
+
+
+// Returns a copy of pageRect reduced if necessary to have the same
+// aspect ratio as pixmapSize.
+const QRect resizeRect(const QRect &pageRect, const QSize &pixmapSize)
+{
+    double ratio = pixmapSize.width() /
+            static_cast<double>(pixmapSize.height());
+    double height = pageRect.height();
+    double width = ratio * height;
+    if (width > pageRect.width()) {
+        width = pageRect.width();
+        height = width / ratio;
+    }
+    QRect rect(pageRect);
+    rect.setWidth(width);
+    rect.setHeight(height);
+    return rect;
 }

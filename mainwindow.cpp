@@ -1,5 +1,5 @@
 /*
-    Copyright (c) 2008-11 Qtrac Ltd. All rights reserved.
+    Copyright (c) 2008-12 Qtrac Ltd. All rights reserved.
     This program or module is free software: you can redistribute it
     and/or modify it under the terms of the GNU General Public License
     as published by the Free Software Foundation, either version 2 of
@@ -9,8 +9,11 @@
     FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License
     for more details.
 */
+#include "aboutform.hpp"
 #include "generic.hpp"
 #include "helpform.hpp"
+#include "label.hpp"
+#include "lineedit.hpp"
 #include "optionsform.hpp"
 #include "mainwindow.hpp"
 #include "sequence_matcher.hpp"
@@ -37,9 +40,6 @@
 #include <QSettings>
 #include <QSpinBox>
 #include <QSplitter>
-
-
-static const QString version("1.8.0");
 
 
 MainWindow::MainWindow(const Debug debug,
@@ -100,7 +100,7 @@ void MainWindow::createWidgets(const QString &filename1,
     setFile1Button = new QPushButton(tr("File #&1..."));
     setFile1Button->setToolTip(tr("<p>Choose the first (left hand) file "
                 "to be compared."));
-    filename1LineEdit = new QLineEdit;
+    filename1LineEdit = new LineEdit;
     filename1LineEdit->setToolTip(tr("The first (left hand) file."));
     filename1LineEdit->setAlignment(Qt::AlignVCenter|Qt::AlignRight);
     filename1LineEdit->setMinimumWidth(100);
@@ -108,7 +108,7 @@ void MainWindow::createWidgets(const QString &filename1,
     setFile2Button = new QPushButton(tr("File #&2..."));
     setFile2Button->setToolTip(tr("<p>Choose the second (right hand) file "
                 "to be compared."));
-    filename2LineEdit = new QLineEdit;
+    filename2LineEdit = new LineEdit;
     filename2LineEdit->setToolTip(tr("The second (right hand) file."));
     filename2LineEdit->setAlignment(Qt::AlignVCenter|Qt::AlignRight);
     filename2LineEdit->setMinimumWidth(100);
@@ -242,10 +242,10 @@ void MainWindow::createWidgets(const QString &filename1,
                 "coordinates are rounded to the nearest Tolerance/Y "
                 "value when zoning."));
     toleranceYLabel->setBuddy(toleranceYSpinBox);
-    if (debug) {
-        showZonesCheckBox = new QCheckBox(tr("Sho&w Zones"));
-        showZonesCheckBox->setToolTip(tr("This is purely for debugging."));
-    }
+    showZonesCheckBox = new QCheckBox(tr("Sho&w Zones"));
+    showZonesCheckBox->setToolTip(tr("<p>This shows the zones that are "
+                "being used and may be helpful when adjusting "
+                "tolerances. (Its original purpose was for debugging.)"));
     statusLabel = new QLabel(tr("Choose files..."));
     statusLabel->setFrameStyle(QFrame::StyledPanel|QFrame::Sunken);
     statusLabel->setMaximumHeight(statusLabel->minimumSizeHint().height());
@@ -260,12 +260,12 @@ void MainWindow::createWidgets(const QString &filename1,
     aboutButton->setToolTip(tr("Click for copyright and credits."));
     quitButton = new QPushButton(tr("&Quit"));
     quitButton->setToolTip(tr("Click to terminate the application."));
-    page1Label = new QLabel;
+    page1Label = new Label;
     page1Label->setAlignment(Qt::AlignCenter);
     page1Label->setToolTip(tr("<p>Shows the first (left hand) document's "
                 "page that corresponds to the page shown in the "
                 "View Difference combobox."));
-    page2Label = new QLabel;
+    page2Label = new Label;
     page2Label->setAlignment(Qt::AlignCenter);
     page2Label->setToolTip(tr("<p>Shows the second (right hand) "
                 "document's page that corresponds to the page shown in "
@@ -282,9 +282,7 @@ void MainWindow::createWidgets(const QString &filename1,
             << columnsSpinBox << toleranceRLabel << toleranceRSpinBox
             << toleranceYLabel << toleranceYSpinBox << saveButton
             << helpButton << aboutButton << quitButton << logEdit
-            << previousButton << nextButton;
-    if (debug)
-        widgets << showZonesCheckBox;
+            << previousButton << nextButton << showZonesCheckBox;
     foreach (QWidget *widget, widgets)
         if (!widget->toolTip().isEmpty())
             widget->installEventFilter(this);
@@ -407,8 +405,7 @@ void MainWindow::createDockWidgets()
     toleranceLayout2->addWidget(toleranceYLabel);
     toleranceLayout2->addWidget(toleranceYSpinBox);
     zoningLayout->addLayout(toleranceLayout2);
-    if (debug)
-        zoningLayout->addWidget(showZonesCheckBox);
+    zoningLayout->addWidget(showZonesCheckBox);
     zoningLayout->addStretch();
     zoningGroupBox->setLayout(zoningLayout);
     zoningDockWidget->setWidget(zoningGroupBox);
@@ -435,8 +432,19 @@ void MainWindow::createConnections()
 
     connect(filename1LineEdit, SIGNAL(textEdited(const QString&)),
             this, SLOT(updateUi()));
+    connect(filename1LineEdit,
+            SIGNAL(filenamesDropped(const QStringList&)),
+            this, SLOT(setFiles1(const QStringList&)));
     connect(filename2LineEdit, SIGNAL(textEdited(const QString&)),
             this, SLOT(updateUi()));
+    connect(filename2LineEdit,
+            SIGNAL(filenamesDropped(const QStringList&)),
+            this, SLOT(setFiles2(const QStringList&)));
+
+    connect(page1Label, SIGNAL(filenamesDropped(const QStringList&)),
+            this, SLOT(setFiles1(const QStringList&)));
+    connect(page2Label, SIGNAL(filenamesDropped(const QStringList&)),
+            this, SLOT(setFiles2(const QStringList&)));
 
     connect(compareComboBox, SIGNAL(currentIndexChanged(int)),
             this, SLOT(updateUi()));
@@ -467,9 +475,8 @@ void MainWindow::createConnections()
             this, SLOT(updateViews()));
     connect(toleranceYSpinBox, SIGNAL(valueChanged(int)),
             this, SLOT(updateViews()));
-    if (debug)
-        connect(showZonesCheckBox, SIGNAL(toggled(bool)),
-                this, SLOT(updateViews()));
+    connect(showZonesCheckBox, SIGNAL(toggled(bool)),
+            this, SLOT(updateViews()));
 
     connect(optionsButton, SIGNAL(clicked()), this, SLOT(options()));
     connect(saveButton, SIGNAL(clicked()), this, SLOT(save()));
@@ -518,10 +525,8 @@ void MainWindow::updateUi()
     compareButton->setEnabled(!filename1LineEdit->text().isEmpty() &&
                               !filename2LineEdit->text().isEmpty());
     saveButton->setEnabled(viewDiffComboBox->count() > 1);
-    if (debug) {
-        if (!showZonesCheckBox->isEnabled())
-            showZonesCheckBox->setChecked(false);
-    }
+    if (!showZonesCheckBox->isEnabled())
+        showZonesCheckBox->setChecked(false);
     if (compareComboBox->currentIndex() != CompareAppearance)
         showComboBox->setCurrentIndex(0);
     showComboBox->setEnabled(compareComboBox->currentIndex() ==
@@ -673,10 +678,8 @@ void MainWindow::updateViews(int index)
             keys.second);
     page1Label->setPixmap(pixmaps.first);
     page2Label->setPixmap(pixmaps.second);
-    if (debug) {
-        if (showZonesCheckBox->isChecked())
-            showZones();
-    }
+    if (showZonesCheckBox->isChecked())
+        showZones();
 }
 
 
@@ -816,8 +819,8 @@ void MainWindow::computeTextHighlights(QPainterPath *highlighted1,
                                  ToleranceY, Columns);
     }
 
-    if (debug >= DebugShowZonesAndTexts) {
-        const bool Yx = debug == DebugShowZonesAndTextsAndYX;
+    if (debug >= DebugShowTexts) {
+        const bool Yx = debug == DebugShowTextsAndYX;
         items1.debug(1, ToleranceY, ComparingWords, Yx);
         items2.debug(2, ToleranceY, ComparingWords, Yx);
     }
@@ -949,6 +952,8 @@ void MainWindow::closeEvent(QCloseEvent*)
     settings.setValue("Tolerance/Y", toleranceYSpinBox->value());
     settings.setValue("Outline", pen);
     settings.setValue("Fill", brush);
+    settings.setValue("InitialComparisonMode",
+                      compareComboBox->currentIndex());
     QMainWindow::close();
 }
 
@@ -958,6 +963,26 @@ bool MainWindow::eventFilter(QObject *object, QEvent *event)
     if (event->type() == QEvent::ToolTip && !showToolTips)
         return true;
     return QMainWindow::eventFilter(object, event);
+}
+
+
+void MainWindow::setFiles1(const QStringList &filenames)
+{
+    if (filenames.count() && !filenames.at(0).isEmpty()) {
+        setFile1(filenames.at(0));
+        if (filenames.count() > 1 && !filenames.at(1).isEmpty())
+            setFile2(filenames.at(1));
+    }
+}
+
+
+void MainWindow::setFiles2(const QStringList &filenames)
+{
+    if (filenames.count() && !filenames.at(0).isEmpty()) {
+        setFile2(filenames.at(0));
+        if (filenames.count() > 1 && !filenames.at(1).isEmpty())
+            setFile1(filenames.at(1));
+    }
 }
 
 
@@ -974,6 +999,14 @@ void MainWindow::setFile1(QString filename)
             return;
         }
         filename1LineEdit->setText(filename);
+        if (!filename2LineEdit->text().isEmpty())
+            page1Label->setText(tr("<p style='font-size: xx-large;"
+                    "color: darkgreen'>DiffPDF: Click Compare<br>"
+                    "or change File #2.</p>"));
+        else
+            page1Label->setText(tr("<p style='font-size: xx-large;"
+                    "color: darkgreen'>DiffPDF: Choose File #2.</p>"));
+        page2Label->clear();
         updateUi();
         int page_count = writeFileInfo(filename);
         pages1LineEdit->setText(tr("1-%1").arg(page_count));
@@ -1000,6 +1033,14 @@ void MainWindow::setFile2(QString filename)
             return;
         }
         filename2LineEdit->setText(filename);
+        if (!filename1LineEdit->text().isEmpty())
+            page2Label->setText(tr("<p style='font-size: xx-large;"
+                    "color: darkgreen'>DiffPDF: Click Compare<br>"
+                    "or change File #1.</p>"));
+        else
+            page2Label->setText(tr("<p style='font-size: xx-large;"
+                    "color: darkgreen'>DiffPDF: Choose File #1.</p>"));
+        page1Label->clear();
         updateUi();
         int page_count = writeFileInfo(filename);
         pages2LineEdit->setText(tr("1-%1").arg(page_count));
@@ -1380,13 +1421,17 @@ void MainWindow::save()
                     keys.first, keys.second);
             painter.drawText(rect, header, QTextOption(Qt::AlignCenter));
             if (savePages == SaveBothPages) {
-                painter.drawPixmap(leftRect, pixmaps.first);
-                painter.drawPixmap(rightRect, pixmaps.second);
+                QRect rect = resizeRect(leftRect, pixmaps.first.size());
+                painter.drawPixmap(rect, pixmaps.first);
+                rect = resizeRect(rightRect, pixmaps.second.size());
+                painter.drawPixmap(rect, pixmaps.second);
                 painter.drawRect(rightRect.adjusted(2.5, 2.5, 2.5, 2.5));
             } else if (savePages == SaveLeftPages) {
-                painter.drawPixmap(leftRect, pixmaps.first);
+                QRect rect = resizeRect(leftRect, pixmaps.first.size());
+                painter.drawPixmap(rect, pixmaps.first);
             } else { // (savePages == SaveRightPages)
-                painter.drawPixmap(leftRect, pixmaps.second);
+                QRect rect = resizeRect(leftRect, pixmaps.second.size());
+                painter.drawPixmap(rect, pixmaps.second);
             }
             painter.drawRect(leftRect.adjusted(2.5, 2.5, 2.5, 2.5));
             if (index + 1 < end)
@@ -1408,9 +1453,12 @@ void MainWindow::help()
 
 void MainWindow::about()
 {
+    AboutForm *form = new AboutForm(this);
+    form->show();
+    /*
     QMessageBox::about(this, tr("DiffPDF — About"),
     tr("<p><b>DiffPDF</a> %1</b> by Mark Summerfield."
-    "<p>Copyright &copy; 2008-11 "
+    "<p>Copyright &copy; 2008-12 "
     "<a href=\"http://www.qtrac.eu\">Qtrac</a> Ltd. All rights reserved."
     "<p>This program compares the text or the visual appearance of "
     "each page in two PDF files."
@@ -1435,6 +1483,7 @@ void MainWindow::about()
     "warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. "
     "See the GNU General Public License (in file <tt>gpl-2.0.txt</tt>) "
     "for more details.").arg(version));
+    */
 }
 
 

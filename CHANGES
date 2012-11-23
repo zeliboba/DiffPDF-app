@@ -1,3 +1,34 @@
+1.9.2
+
+- Added missing step to the README.
+
+1.9.1
+
+- Save As now preserves the aspect ratio. Bug reported by Rainer
+  Krachten.
+
+1.9.0
+
+- Added Czech translation provided by Pavel Fric.
+
+- Will now use the default locale's language for standard dialogs (e.g.,
+  for the file dialog).
+
+- Dragging & dropping one or two files onto the filename line edits or
+  onto the file viewer panels is now supported. Independently suggested
+  by Liviu Andronic and Rory Gordon.
+
+- Show Zones checkbox is always visible (it was only visible with
+  --debug in earlier versions).
+
+- DiffPDF now starts up with its initial comparison mode being whatever
+  comparison mode was in force when it was shut down (or Words mode the
+  first time it is run).
+
+- Improved About box with more version info + contributors.
+
+- Added --help command line option.
+
 1.8.0
 
 - Introduced zoning: this can be slow in Characters mode but can provide
@@ -33,8 +64,8 @@
 
 1.6.0
 
-- In addition to Appearance comparisons using highlighting, they can now
-  also some composition modes to help make subtle differences more
+- In addition to Appearance comparisons using highlighting, some
+  composition modes can now be used to help make subtle differences more
   visible. (This was inspired by feedback by Florian Heiderich.)
 - Can now control the square size for appearance comparisons. Using very
   small squares can help reveal tiny Appearance differences.
