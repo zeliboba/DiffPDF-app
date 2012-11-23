@@ -8,13 +8,15 @@
 <li><a href="#vis">Appearance Comparison Mode</a></li>
 <li><a href="#zon">Zoning</a></li>
 <li><a href="#ran">Page Ranges</a></li>
+<li><a href="#mar">Margins</a></li>
+<li><a href="#sav">Saving</a></li>
 <li><a href="#opt">The Options Dialog</a></li>
 <li><a href="#dock">Dock Windows</a></li>
 <li><a href="#cli">Command Line Usage</a></li>
 </ul>
 
 <h3 id="bas">Basic Usage</h3>
-<p><p>Click the <b>File #1</b> button to choose one PDF file and then
+<p>Click the <b>File #1</b> button to choose one PDF file and then
 the <b>File #2</b> button to choose another (ideally very similar) PDF
 file, then click the <b>Compare</b> button to perform the comparison,
 and when that's finished, navigate through the pairs of differing pages
@@ -25,8 +27,7 @@ color="darkgreen">DiffPDF</font>'s view panels, then click the
 <b>Compare</b> button.
 
 <h3 id="cmp">The Compare Button</h3>
-<p>
-When the <b>Compare</b> button is pressed, <font
+<p>When the <b>Compare</b> button is pressed, <font
 color="darkgreen">DiffPDF</font> does a high-speed scan of every pair of
 pages (~100 pairs of pages per second on the author's machine). To make
 the scan as fast as possible <font color="darkgreen">DiffPDF</font> does
@@ -99,6 +100,22 @@ specifying two page ranges, 1-12 for the first and 1-3, 5-13 for the
 second. This will make DiffPDF compare pages in the pairs (1, 1), (2,
 2), (3, 3), (4, 5), (5, 6), and so on, to (12, 13).
 
+<h3 id="mar">Margins</h3>
+<p>It is possible to make <font color="darkgreen">DiffPDF</font> ignore
+any text that is above a specified top margin, below a specified bottom
+margin, left of a specified left margin, and right of a specified right
+margin. One or more of these margins can be specified by, first,
+checking the <b>Exclude Margins</b> checkbox, and second by setting
+any of the margins. Margins can be set by clicking on a page view or by
+using the margin spinboxes.
+
+<h3 id="sav">Saving</h3>
+<p>Use the <b>Save As</b> button to pop up a Save dialog. This dialog
+lets you save a <tt>.pdf</tt> file with the highlighted changes, or
+individual image files (e.g., in <tt>.png</tt> or various other common
+image formats). The dialog supports saving the current or all left
+pages, right pages, or both pages. 
+
 <h3 id="opt">The Options Dialog</h3>
 <p>This dialog is invoked by clicking the <b>Options</b> button. 
 The dialog supports changing the highlighting color, whether to use 
@@ -110,11 +127,13 @@ used to indicate the vertical position of differences; the rules can
 be switched off using a Rule width of 0.
 
 <h3 id="dock">Dock Windows</h3>
-<p>The Controls, Actions, and Log views are in dock widgets&mdash;these 
-can be dragged into other dock areas (in which case they will 
-reshape themselves as necessary), or dragged to float free. 
-The Log can also be closed; right click a dock area and check 
-the Log checkbox to open it again.
+<p>The Controls, Actions, Margins, Zoning, and Log views are in dock
+widgets&mdash;these can be dragged into other dock areas (in which case
+they will reshape themselves as necessary), or dragged to float free.
+The Margins, Zoning, and Log views can also be closed; right click a
+dock area splitter and check their checkbox to open them again. These
+views may be shown tabbed: if there is enough space they can be dragged
+out of their tabs and all shown in full.
 
 <h3 id="cli">Command Line Usage</h3>
 <p>Although <font color="darkgreen">DiffPDF</font> is a GUI program, if run from a console with two PDF 
@@ -126,16 +145,43 @@ if their names are preceded with <tt>-a</tt> or
 or in Characters mode if their names are preceded with <tt>-c</tt> or 
 <tt>--character</tt> on the command line. Run 
 <font color="darkgreen">DiffPDF</font> with <tt>--help</tt> to see all
-the command line options.
-<p>If you're specifically looking for a command line PDF comparison 
-tool, e.g., for automated testing, try 
-<a href="http://www.qtrac/eu/comparepdf.html">comparepdf</a>.
+the command line options. (This won't work on Windows, although the
+other command line options will.) Here is the <tt>--help</tt>
+output:
+<pre>
+usage: diffpdf [options] [file1.pdf [file2.pdf]]
 
-<p>There are also debugging options. Use <tt>--debug=2</tt> and
-<tt>--debug=3</tt> to write the texts in the order they are fed to the
-sequence matcher into temporary files (e.g., <tt>/tmp/page1.txt</tt>,
-etc.). The text reordering is done by the
+A GUI program that compares two PDF files and shows
+their differences.
+
+The files are optional and are normally set through
+the user interface.
+
+options:
+--help             show this usage text and terminate (run the
+                   program without this option and press F1 for
+                   online help)
+--appearance  -a   set the initial comparison mode to Appearance
+--characters  -c   set the initial comparison mode to Characters
+--words       -w   set the initial comparison mode to Words
+--language=xx      set the program to use the given translation
+                   language, e.g., en for English, cz for Czech;
+                   English will be used if there is no translation
+                   available
+--debug=2          write the text fed to the sequence matcher into
+                   temporary files (e.g., /tmp/page1.txt etc.)
+--debug=3          as --debug=3 but also includes coordinates in
+                    y, x order
+</pre>
+
+<p>
+The text reordering is done by the
 <tt>TextItems::columnZoneYxOrder()</tt> method in the
 <tt>textitem.cpp</tt> file: suggestions for improvement are welcome!
 (Note that when using <tt>--debug3</tt> coordinates are output in
 <i>y</i>, <i>x</i> order.)
+
+<p>If you're specifically looking for a command line PDF comparison 
+tool, e.g., for automated testing, try 
+<a href="http://www.qtrac/eu/comparepdf.html">comparepdf</a>.
+

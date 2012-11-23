@@ -15,6 +15,7 @@
 #include <QFileDialog>
 #include <QFormLayout>
 #include <QGroupBox>
+#include <QImageWriter>
 #include <QLabel>
 #include <QLineEdit>
 #include <QPushButton>
@@ -110,8 +111,14 @@ void SaveForm::updateUi()
 
 void SaveForm::chooseFile()
 {
+    QList<QByteArray> formats = QImageWriter::supportedImageFormats();
+    QStringList suffixes;
+    foreach (const QByteArray &format, formats)
+        suffixes << "*." + QString(format.toLower());
     QString filename = QFileDialog::getSaveFileName(this,
-            tr("DiffPDF — Save"), m_path, tr("PDF files (*.pdf)"));
+            tr("DiffPDF — Save"), m_path,
+            tr("PDF files (*.pdf);;Image files (%1)")
+            .arg(suffixes.join(" ")));
     if (!filename.isEmpty()) {
         filenameLineEdit->setText(filename);
         buttonBox->button(QDialogButtonBox::Ok)->setFocus();
@@ -122,7 +129,7 @@ void SaveForm::chooseFile()
 void SaveForm::accept()
 {
     *m_filename = filenameLineEdit->text();
-    if (!m_filename->toLower().endsWith(".pdf"))
+    if (!m_filename->contains("."))
         *m_filename += ".pdf";
     *m_saveAll = saveAllRadioButton->isChecked();
     if (leftPagesRadioButton->isChecked())

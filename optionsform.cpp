@@ -164,7 +164,7 @@ void OptionsForm::createLayout()
     QFormLayout *layout = new QFormLayout;
     layout->addRow(box);
     layout->addRow(showToolTipsCheckBox);
-    layout->addRow(tr("Cache &Size:"), cacheSizeSpinBox);
+    layout->addRow(tr("C&ache Size:"), cacheSizeSpinBox);
     layout->addRow(buttonBox);
     setLayout(layout);
 }

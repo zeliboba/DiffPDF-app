@@ -3,7 +3,7 @@ File #&1...
 File #&2...
 Pages
 Pages
-Co&mpare
+&Compare
 &View
 Show
 Previous
@@ -14,7 +14,12 @@ Columns
 Tolerance/&R
 Tolerance/&Y
 Show Zones
-&Compare
+Exclude Margins
+Top
+Bottom
+Left
+Right
+Compare
 Options...
 &Save As...
 About

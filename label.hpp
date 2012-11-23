@@ -24,10 +24,12 @@ public:
 
 signals:
     void filenamesDropped(const QStringList &filenames);
+    void clicked(const QPoint &pos);
 
 protected:
     void dragEnterEvent(QDragEnterEvent *event);
     void dropEvent(QDropEvent *event);
+    void mousePressEvent(QMouseEvent *event);
 };
 
 #endif // LABEL_HPP

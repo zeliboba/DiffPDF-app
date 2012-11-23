@@ -24,7 +24,9 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
+#ifdef Q_WS_MAC
     app.setCursorFlashTime(0);
+#endif
     app.setOrganizationName("Qtrac Ltd.");
     app.setOrganizationDomain("qtrac.eu");
     app.setApplicationName("DiffPDF");

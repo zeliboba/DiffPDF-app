@@ -12,6 +12,7 @@
 
 #include "helpform.hpp"
 #include <poppler-version.h>
+#include <QApplication>
 #include <QFile>
 #include <QKeySequence>
 #include <QSettings>
@@ -36,7 +37,7 @@ HelpForm::HelpForm(QWidget *parent) : QMainWindow(parent)
     resize(640, 480);
     QSettings settings;
     restoreGeometry(settings.value("HelpForm/Geometry").toByteArray());
-    setWindowTitle(tr("DiffPDF — Help"));
+    setWindowTitle(tr("%1 — Help").arg(qApp->applicationName()));
 }
 
 

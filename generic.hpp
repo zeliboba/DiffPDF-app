@@ -37,7 +37,7 @@ enum InitialComparisonMode{CompareAppearance=0, CompareCharacters=1,
 
 enum Debug{DebugOff, DebugShowTexts, DebugShowTextsAndYX};
 
-const int DPI_FACTOR = 72;
+const int POINTS_PER_INCH = 72;
 
 typedef QSet<int> Ranges;
 typedef QPair<Ranges, Ranges> RangesPair;
@@ -74,13 +74,17 @@ inline const QChar canonicalizedCharacter(const QChar &in)
 
 
 void scaleRect(int dpi, QRectF *rect);
+int pointValueForPixelOffset(const double dpi, int px);
+int pixelOffsetForPointValue(const double dpi, int pt);
+QRectF rectForMargins(const int width, const int height, const int top,
+        const int bottom, const int left, const int right);
 Ranges unorderedRange(int end, int start=0);
 
 QPixmap colorSwatch(const QColor &color);
 QPixmap brushSwatch(const Qt::BrushStyle style, const QColor &color);
 QPixmap penStyleSwatch(const Qt::PenStyle style, const QColor &color);
 
-const TextBoxList getTextBoxes(PdfPage page);
+const TextBoxList getTextBoxes(PdfPage page, const QRectF &rect=QRect());
 
 const QStringList strippedFilenames(const QString &filenames);
 const QRect resizeRect(const QRect &pageRect, const QSize &pixmapSize);

@@ -25,6 +25,19 @@ http://www.qtrac.eu/comparepdf.html.)
 
 Home page: http://www.qtrac.eu/diffpdf.html
 
+Windows Users
+=============
+
+Download the zip file, e.g., diffpdf-1.9.2.zip (where the number will
+vary depending on the version). Navigate to the file in Windows Explorer
+and use the context menu to choose the Extract All option. It doesn't
+matter what folder you extract to, but best to use one specifically for
+DiffPDF. The folder will contain diffpdf.exe and may contain some .dll
+files too. If there are .dll files, you must not move diffpdf.exe to any
+other folder!
+
+Once unzipped you can double-click diffpdf.exe to run it. You might also
+like to add a shortcut to it from the desktop or from the start menu.
 
 Compiling and Installing DiffPDF (Mac-specific notes are at the end.)
 ================================

@@ -1,3 +1,20 @@
+2.0.0
+
+- Can now have comparisons exclude text that's outside user-specified
+  margins. This feature was sponsored by a company that prefers to
+  remain anonymous.
+
+- Save As can now save images as well as PDFs.
+
+- Minor bug fixes and improvements.
+
+- Command line help (--help) will no longer work on Windows. This is to
+  avoid a spurious console window appearing. I've put the output in the
+  online help though.
+
+- Improved dock window handling so that docks can now be stacked on top
+  of each other (useful for small screens).
+
 1.9.2
 
 - Added missing step to the README.
@@ -16,7 +33,8 @@
 
 - Dragging & dropping one or two files onto the filename line edits or
   onto the file viewer panels is now supported. Independently suggested
-  by Liviu Andronic and Rory Gordon.
+  by Liviu Andronic and Rory Gordon. (This does not seem to work on
+  Windows.)
 
 - Show Zones checkbox is always visible (it was only visible with
   --debug in earlier versions).
@@ -27,7 +45,8 @@
 
 - Improved About box with more version info + contributors.
 
-- Added --help command line option.
+- Added --help command line option. (For Windows this only works if
+  diffpdf is compiled with access to the console.)
 
 1.8.0
 

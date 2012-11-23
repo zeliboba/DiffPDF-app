@@ -2,14 +2,52 @@
 <!DOCTYPE TS>
 <TS version="2.0" language="cs_CZ">
 <context>
+    <name>AboutForm</name>
+    <message>
+        <location filename="aboutform.cpp" line="30"/>
+        <source>&lt;p&gt;&lt;b&gt;DiffPDF&lt;/a&gt; %1&lt;/b&gt; by Mark Summerfield &lt;tt&gt;&amp;lt;mark@qtrac.eu&amp;gt;&lt;/tt&gt;.&lt;br&gt;Copyright &amp;copy; 2008-12 &lt;a href=&quot;http://www.qtrac.eu&quot;&gt;Qtrac&lt;/a&gt; Ltd. All rights reserved.&lt;br&gt;Built with Qt %2 and Poppler %3.&lt;hr&gt;&lt;p&gt;This program compares the text or the visual appearance of each page in two PDF files.&lt;hr&gt;&lt;p&gt;If you like DiffPDF you might like my books:&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/gobook.html&quot;&gt;Programming in Go&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/aqpbook.html&quot;&gt;Advanced Qt Programming&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/py3book.html&quot;&gt;Programming in Python 3&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/pyqtbook.html&quot;&gt;Rapid GUI Programming with Python and Qt&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;I also provide training and consultancy in C++, Go, Python&amp;nbsp;2, Python&amp;nbsp;3, C++/Qt, and PyQt4.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutform.cpp" line="53"/>
+        <source>&lt;ul&gt;&lt;li&gt;Liviu Andronic &amp;mdash; suggested adding drag and drop&lt;/li&gt;&lt;li&gt;&lt;b&gt;Jasmin Blanchette&lt;/b&gt; &amp;mdash; the original idea and subsequent suggestions&lt;/li&gt;&lt;li&gt;Pavel Fric &amp;mdash; Czech translation&lt;/li&gt;&lt;li&gt;Rory Gordon &amp;mdash; suggested adding drag and drop&lt;/li&gt;&lt;li&gt;Florian Heiderich &amp;mdash; suggested using composition modes for showing subtle differences&lt;/li&gt;&lt;li&gt;Paul Howarth &amp;mdash; suggestions resulting in Characters mode&lt;/li&gt;&lt;li&gt;&lt;b&gt;Steven Lee&lt;/b&gt; &amp;mdash; creating Windows binaries&lt;/li&gt;&lt;li&gt;&lt;b&gt;Dirk Loss&lt;/b&gt; &amp;mdash; creating Mac binaries&lt;/li&gt;&lt;li&gt;David Paleino &amp;mdash; Debian packager&lt;/li&gt;&lt;/ul&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutform.cpp" line="70"/>
+        <source>This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option), any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License (in file &lt;tt&gt;gpl-2.0.txt&lt;/tt&gt;) for more details.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutform.cpp" line="81"/>
+        <source>&amp;About</source>
+        <translation type="unfinished">&amp;O programu</translation>
+    </message>
+    <message>
+        <location filename="aboutform.cpp" line="82"/>
+        <source>&amp;Contributors</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutform.cpp" line="83"/>
+        <source>&amp;License</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="aboutform.cpp" line="88"/>
+        <source>DiffPDF â About</source>
+        <translation type="unfinished">DiffPDF: O programu</translation>
+    </message>
+</context>
+<context>
     <name>HelpForm</name>
     <message>
-        <location filename="helpform.cpp" line="30"/>
+        <location filename="helpform.cpp" line="31"/>
         <source>Escape</source>
         <translation>Uniknout</translation>
     </message>
     <message>
-        <location filename="helpform.cpp" line="38"/>
+        <location filename="helpform.cpp" line="39"/>
         <source>DiffPDF â Help</source>
         <translation>Nápověda k DiffPDF</translation>
     </message>
@@ -18,7 +56,7 @@
     <name>MainWindow</name>
     <message>
         <location filename="mainwindow.cpp" line="88"/>
-        <location filename="mainwindow.cpp" line="1335"/>
+        <location filename="mainwindow.cpp" line="1376"/>
         <source>DiffPDF</source>
         <translation>DiffPDF</translation>
     </message>
@@ -69,8 +107,8 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="132"/>
-        <location filename="mainwindow.cpp" line="1139"/>
-        <location filename="mainwindow.cpp" line="1254"/>
+        <location filename="mainwindow.cpp" line="1180"/>
+        <location filename="mainwindow.cpp" line="1295"/>
         <source>&amp;Compare</source>
         <translation>&amp;Porovnat</translation>
     </message>
@@ -116,7 +154,7 @@
     </message>
     <message>
         <location filename="mainwindow.cpp" line="165"/>
-        <location filename="mainwindow.cpp" line="1170"/>
+        <location filename="mainwindow.cpp" line="1211"/>
         <source>(Not viewing)</source>
         <translation>(Nezobrazeno)</translation>
     </message>
@@ -211,14 +249,18 @@
         <translation>&lt;p&gt;Souřadnice &lt;i&gt;y&lt;/i&gt; polohy textu jsou při rozdělení na oblasti zaokrouhleny k nejbližší hodnotě odchylkye/Y.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="246"/>
+        <location filename="mainwindow.cpp" line="245"/>
         <source>Sho&amp;w Zones</source>
         <translation>&amp;Ukázat oblasti</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="247"/>
         <source>This is purely for debugging.</source>
-        <translation>Toto je čistě pro účel ladění.</translation>
+        <translation type="obsolete">Toto je čistě pro účel ladění.</translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="246"/>
+        <source>&lt;p&gt;This shows the zones that are being used and may be helpful when adjusting tolerances. (Its original purpose was for debugging.)</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="mainwindow.cpp" line="249"/>
@@ -291,251 +333,269 @@
         <translation>&lt;p&gt;Ukáže druhou stranu dokumentu (napravo), která odpovídá straně ukázané ve sdruženém okně pro Pohled na rozdíly.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="342"/>
-        <location filename="mainwindow.cpp" line="590"/>
+        <location filename="mainwindow.cpp" line="340"/>
+        <location filename="mainwindow.cpp" line="595"/>
         <source>Controls</source>
         <translation>Ovládání</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="373"/>
-        <location filename="mainwindow.cpp" line="602"/>
+        <location filename="mainwindow.cpp" line="371"/>
+        <location filename="mainwindow.cpp" line="607"/>
         <source>Actions</source>
         <translation>Činnosti</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="393"/>
-        <location filename="mainwindow.cpp" line="614"/>
+        <location filename="mainwindow.cpp" line="391"/>
+        <location filename="mainwindow.cpp" line="619"/>
         <source>Zoning</source>
         <translation>Oblasti</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="417"/>
-        <location filename="mainwindow.cpp" line="621"/>
+        <location filename="mainwindow.cpp" line="414"/>
+        <location filename="mainwindow.cpp" line="626"/>
         <source>Log</source>
         <translation>Zápis</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="589"/>
+        <location filename="mainwindow.cpp" line="594"/>
         <source>DiffPDF â Controls</source>
         <translation>DiffPDF: Ovládání</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="601"/>
+        <location filename="mainwindow.cpp" line="606"/>
         <source>DiffPDF â Actions</source>
         <translation>DiffPDF: Činnosti</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="613"/>
+        <location filename="mainwindow.cpp" line="618"/>
         <source>DiffPDF â Zoning</source>
         <translation>DiffPDF: Rozdělení na oblasti</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="620"/>
+        <location filename="mainwindow.cpp" line="625"/>
         <source>DiffPDF â Log</source>
         <translation>DiffPDF: Zápis</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="758"/>
+        <location filename="mainwindow.cpp" line="761"/>
         <source>DiffPDF: False Positive</source>
         <translation>DiffPDF: Falešné kladné výsledky</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="968"/>
+        <location filename="mainwindow.cpp" line="993"/>
         <source>DiffPDF â Choose File #1</source>
         <translation>DiffPDF: Vybrat soubor #1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="969"/>
-        <location filename="mainwindow.cpp" line="995"/>
+        <location filename="mainwindow.cpp" line="994"/>
+        <location filename="mainwindow.cpp" line="1028"/>
         <source>PDF files (*.pdf)</source>
         <translation>Soubory PDF (*.pdf)</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="972"/>
-        <location filename="mainwindow.cpp" line="998"/>
-        <location filename="mainwindow.cpp" line="1020"/>
-        <location filename="mainwindow.cpp" line="1023"/>
+        <location filename="mainwindow.cpp" line="997"/>
+        <location filename="mainwindow.cpp" line="1031"/>
+        <location filename="mainwindow.cpp" line="1061"/>
+        <location filename="mainwindow.cpp" line="1064"/>
         <source>DiffPDF â Error</source>
         <translation>DiffPDF: Chyba</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="973"/>
-        <location filename="mainwindow.cpp" line="999"/>
+        <location filename="mainwindow.cpp" line="998"/>
+        <location filename="mainwindow.cpp" line="1032"/>
         <source>Cannot compare a file to itself.</source>
         <translation>Soubor nelze porovnávat se sebou samým.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="979"/>
-        <location filename="mainwindow.cpp" line="1005"/>
-        <location filename="mainwindow.cpp" line="1127"/>
+        <location filename="mainwindow.cpp" line="1003"/>
+        <source>&lt;p style=&apos;font-size: xx-large;color: darkgreen&apos;&gt;DiffPDF: Click Compare&lt;br&gt;or change File #2.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1007"/>
+        <source>&lt;p style=&apos;font-size: xx-large;color: darkgreen&apos;&gt;DiffPDF: Choose File #2.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1012"/>
+        <location filename="mainwindow.cpp" line="1046"/>
+        <location filename="mainwindow.cpp" line="1168"/>
         <source>1-%1</source>
         <translation>1-%1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="983"/>
+        <location filename="mainwindow.cpp" line="1016"/>
         <source>Choose second file</source>
         <translation>Vybrat druhý soubor</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="985"/>
-        <location filename="mainwindow.cpp" line="1011"/>
+        <location filename="mainwindow.cpp" line="1018"/>
+        <location filename="mainwindow.cpp" line="1052"/>
         <source>Ready to compare</source>
         <translation>Připraven k porovnávání</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="994"/>
+        <location filename="mainwindow.cpp" line="1027"/>
         <source>DiffPDF â Choose File #2</source>
         <translation>DiffPDF: Vybrat soubor #2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1009"/>
+        <location filename="mainwindow.cpp" line="1037"/>
+        <source>&lt;p style=&apos;font-size: xx-large;color: darkgreen&apos;&gt;DiffPDF: Click Compare&lt;br&gt;or change File #1.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1041"/>
+        <source>&lt;p style=&apos;font-size: xx-large;color: darkgreen&apos;&gt;DiffPDF: Choose File #1.&lt;/p&gt;</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="mainwindow.cpp" line="1050"/>
         <source>Choose first file</source>
         <translation>Vybrat první soubor</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1021"/>
+        <location filename="mainwindow.cpp" line="1062"/>
         <source>Cannot load &apos;%1&apos;.</source>
         <translation>Nelze nahrát &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1024"/>
+        <location filename="mainwindow.cpp" line="1065"/>
         <source>Cannot read a locked PDF (&apos;%1&apos;).</source>
         <translation>Nelze přečíst zamknutý soubor PDF (&apos;%1&apos;).</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1041"/>
+        <location filename="mainwindow.cpp" line="1082"/>
         <source>&lt;b&gt;%1&lt;/b&gt;</source>
         <translation>&lt;b&gt;%1&lt;/b&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1045"/>
+        <location filename="mainwindow.cpp" line="1086"/>
         <source>%1: %2.</source>
         <translation>%1: %2.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1050"/>
+        <location filename="mainwindow.cpp" line="1091"/>
         <source>Created: %1, last modified %2.</source>
         <translation>Vytvořeno: %1, naposledy změněno %2.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1054"/>
+        <location filename="mainwindow.cpp" line="1095"/>
         <source>Created: %1.</source>
         <translation>Vytvořeno: %1.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1056"/>
+        <location filename="mainwindow.cpp" line="1097"/>
         <source>Page count: %1.</source>
         <translation>Počet stran: %1.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1061"/>
+        <location filename="mainwindow.cpp" line="1102"/>
         <source>Page size: %1pt x %2pt (%3mm x %4mm).</source>
         <translation>Velikost strany: %1 bodů x %2 bodů (%3mm x %4mm).</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1079"/>
+        <location filename="mainwindow.cpp" line="1120"/>
         <source>&lt;font color=red&gt;%1&lt;/font&gt;</source>
         <translation>&lt;font color=red&gt;%1&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1125"/>
+        <location filename="mainwindow.cpp" line="1166"/>
         <source>Failed to understand page range &apos;%1&apos;.</source>
         <translation>Nepodařilo se porozumět stranovému rozsahu &apos;%1&apos;.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1137"/>
-        <location filename="mainwindow.cpp" line="1166"/>
+        <location filename="mainwindow.cpp" line="1178"/>
+        <location filename="mainwindow.cpp" line="1207"/>
         <source>&amp;Cancel</source>
         <translation>Z&amp;rušit</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1172"/>
+        <location filename="mainwindow.cpp" line="1213"/>
         <source>Ready</source>
         <translation>Připraven</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1189"/>
-        <location filename="mainwindow.cpp" line="1196"/>
+        <location filename="mainwindow.cpp" line="1230"/>
+        <location filename="mainwindow.cpp" line="1237"/>
         <source>Failed to read page %1 from &apos;%2&apos;.</source>
         <translation>Nepodařilo se přečíst stranu %1 z &apos;%2&apos;.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1200"/>
+        <location filename="mainwindow.cpp" line="1241"/>
         <source>Comparing: %1 vs. %2.</source>
         <translation>Porovnává se: %1 s %2.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1203"/>
+        <location filename="mainwindow.cpp" line="1244"/>
         <source>Cancelled.</source>
         <translation>Zrušeno.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1210"/>
+        <location filename="mainwindow.cpp" line="1251"/>
         <source>%1 vs. %2 %3 %4</source>
         <translation>%1 s %2 %3 %4</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1214"/>
+        <location filename="mainwindow.cpp" line="1255"/>
         <source>Comparing %1/%2</source>
         <translation>Porovnává se %1/%2</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1231"/>
+        <location filename="mainwindow.cpp" line="1272"/>
         <source>&lt;font color=brown&gt;Files differ on 1 page (%1 page%2 compared).&lt;/font&gt;</source>
         <translation>&lt;font color=brown&gt;Soubory se liší na 1 straně (%1 stran%2 porovnáno).&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1234"/>
-        <location filename="mainwindow.cpp" line="1239"/>
+        <location filename="mainwindow.cpp" line="1275"/>
+        <location filename="mainwindow.cpp" line="1280"/>
         <source> was</source>
         <translation> byla</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1234"/>
-        <location filename="mainwindow.cpp" line="1240"/>
+        <location filename="mainwindow.cpp" line="1275"/>
+        <location filename="mainwindow.cpp" line="1281"/>
         <source>s were</source>
         <translation>bylo</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1236"/>
+        <location filename="mainwindow.cpp" line="1277"/>
         <source>&lt;font color=brown&gt;Files differ on %1 pages (%2 page%3 compared).&lt;/font&gt;</source>
         <translation>&lt;font color=brown&gt;Soubory se liší na %1 stranách (%2 stran%3 porovnáno).&lt;/font&gt;</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1245"/>
+        <location filename="mainwindow.cpp" line="1286"/>
         <source>The PDFs appear to be the same.</source>
         <translation>Zdá se, že soubory PDF jsou stejné.</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1255"/>
+        <location filename="mainwindow.cpp" line="1296"/>
         <source>%1 differ%2 %3/%4 compared</source>
         <translation>%1 se liší%2 %3/%4 porovnáno</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1340"/>
-        <location filename="mainwindow.cpp" line="1344"/>
+        <location filename="mainwindow.cpp" line="1381"/>
+        <location filename="mainwindow.cpp" line="1385"/>
         <source>DiffPDF %1 %2 %1 %3</source>
         <translation>DiffPDF %1 %2 %1 %3</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1348"/>
+        <location filename="mainwindow.cpp" line="1389"/>
         <source>DiffPDF %1 %2 vs. %3 %1 %4</source>
         <translation>DiffPDF %1 %2 s %3 %1 %4</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1396"/>
+        <location filename="mainwindow.cpp" line="1441"/>
         <source>Saved %1</source>
         <translation>Uloženo %1</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1411"/>
         <source>DiffPDF â About</source>
-        <translation>DiffPDF: O programu</translation>
+        <translation type="obsolete">DiffPDF: O programu</translation>
     </message>
     <message>
-        <location filename="mainwindow.cpp" line="1412"/>
         <source>&lt;p&gt;&lt;b&gt;DiffPDF&lt;/a&gt; %1&lt;/b&gt; by Mark Summerfield.&lt;p&gt;Copyright &amp;copy; 2008-11 &lt;a href=&quot;http://www.qtrac.eu&quot;&gt;Qtrac&lt;/a&gt; Ltd. All rights reserved.&lt;p&gt;This program compares the text or the visual appearance of each page in two PDF files.&lt;p&gt;If you like DiffPDF you might like my books:&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/aqpbook.html&quot;&gt;Advanced Qt Programming&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/gobook.html&quot;&gt;Programming in Go&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/py3book.html&quot;&gt;Programming in Python 3&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/pyqtbook.html&quot;&gt;Rapid GUI Programming with Python and Qt&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;I also provide training and consultancy in C++, Go, Python&amp;nbsp;2, Python&amp;nbsp;3, C++/Qt, and PyQt4.&lt;hr&gt;&lt;p&gt;This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 2 of the License, or (at your option), any later version. This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License (in file &lt;tt&gt;gpl-2.0.txt&lt;/tt&gt;) for more details.</source>
-        <translation>&lt;p&gt;&lt;b&gt;DiffPDF&lt;/a&gt; %1&lt;/b&gt; od Mark Summerfield.&lt;p&gt;Autorské právo &amp;copy; 2008-11 &lt;a href=&quot;http://www.qtrac.eu&quot;&gt;Qtrac&lt;/a&gt; Ltd. Všechna práva vyhrazena.&lt;p&gt;Tento program porovnává text nebo viditelný vzhled každé strany dvou souborů PDF.&lt;p&gt;Pokud se vám líbí DiffPDF, mohly by se vám líbit i mé knihy:&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/aqpbook.html&quot;&gt;Advanced Qt Programming&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/gobook.html&quot;&gt;Programming in Go&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/py3book.html&quot;&gt;Programming in Python 3&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/pyqtbook.html&quot;&gt;Rapid GUI Programming with Python and Qt&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;Také poskytuji školení a poradenství pro C++, Go, Python&amp;nbsp;2, Python&amp;nbsp;3, C++/Qt, a PyQt4.&lt;hr&gt;&lt;p&gt;Tento program je svobodný software: Tento balík je svobodným softwarem; můžete jej rozdávat a/nebo upravovat za podmínek GNU General Public License (GPL), jak jsou zveřejněny Free Software Foundation; buď ve verzi 2 licence, nebo (podle své volby) v kterékoli pozdější verzi. Tento balík je šířen v naději, že bude užitečný, ale BEZ JAKÉKOLI ZÁRUKY; také bez předpokládané záruky PRODEJNOSTI nebo POUŽITELNOSTI PRO NĚJAKÝ URČITÝ ÚČEL: Více podrobností naleznete v GNU Library General Public License (v souboru &lt;tt&gt;gpl-2.0.txt&lt;/tt&gt;).</translation>
+        <translation type="obsolete">&lt;p&gt;&lt;b&gt;DiffPDF&lt;/a&gt; %1&lt;/b&gt; od Mark Summerfield.&lt;p&gt;Autorské právo &amp;copy; 2008-11 &lt;a href=&quot;http://www.qtrac.eu&quot;&gt;Qtrac&lt;/a&gt; Ltd. Všechna práva vyhrazena.&lt;p&gt;Tento program porovnává text nebo viditelný vzhled každé strany dvou souborů PDF.&lt;p&gt;Pokud se vám líbí DiffPDF, mohly by se vám líbit i mé knihy:&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/aqpbook.html&quot;&gt;Advanced Qt Programming&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/gobook.html&quot;&gt;Programming in Go&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/py3book.html&quot;&gt;Programming in Python 3&lt;/a&gt;&lt;/li&gt;&lt;li&gt;&lt;a href=&quot;http://www.qtrac.eu/pyqtbook.html&quot;&gt;Rapid GUI Programming with Python and Qt&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;Také poskytuji školení a poradenství pro C++, Go, Python&amp;nbsp;2, Python&amp;nbsp;3, C++/Qt, a PyQt4.&lt;hr&gt;&lt;p&gt;Tento program je svobodný software: Tento balík je svobodným softwarem; můžete jej rozdávat a/nebo upravovat za podmínek GNU General Public License (GPL), jak jsou zveřejněny Free Software Foundation; buď ve verzi 2 licence, nebo (podle své volby) v kterékoli pozdější verzi. Tento balík je šířen v naději, že bude užitečný, ale BEZ JAKÉKOLI ZÁRUKY; také bez předpokládané záruky PRODEJNOSTI nebo POUŽITELNOSTI PRO NĚJAKÝ URČITÝ ÚČEL: Více podrobností naleznete v GNU Library General Public License (v souboru &lt;tt&gt;gpl-2.0.txt&lt;/tt&gt;).</translation>
     </message>
 </context>
 <context>

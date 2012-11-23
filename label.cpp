@@ -14,6 +14,7 @@
 #include "label.hpp"
 #include <QDragEnterEvent>
 #include <QDragEnterEvent>
+#include <QMouseEvent>
 
 
 Label::Label(QWidget *parent) : QLabel(parent)
@@ -34,4 +35,12 @@ void Label::dropEvent(QDropEvent *event)
     if (!filenames.isEmpty())
         emit filenamesDropped(filenames);
     event->acceptProposedAction();
+}
+
+
+void Label::mousePressEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton)
+        emit clicked(event->pos());
+    QLabel::mousePressEvent(event);
 }
