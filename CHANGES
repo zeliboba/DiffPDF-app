@@ -1,0 +1,130 @@
+1.8.0
+
+- Introduced zoning: this can be slow in Characters mode but can provide
+  better accuracy in text modes.
+
+1.7.1
+
+- Improved Character mode to be as liberal about hyphens as Words mode.
+- Minor doc changes that I forgot for 1.7.0.
+- Minor GUI bug fixes and changes.
+- Minor under the hood efficiency improvements.
+
+1.7.0
+
+- Renamed Text mode to Words mode. This mode is best for alphabetic text
+  (e.g., English).
+- Added Characters mode. This mode is best for logographic text (e.g.,
+  Chinese and Japanese). This was suggested by Paul Howarth.
+
+1.6.3
+
+- Very minor cosmetic changes.
+
+1.6.2
+
+- Save button is now only enabled if there are changes.
+- An improved help window with slightly more information.
+
+1.6.1
+
+- In rare cases the highlighting on the right hand page could be in the
+  wrong (horizontal) position; this has now been fixed.
+
+1.6.0
+
+- In addition to Appearance comparisons using highlighting, they can now
+  also some composition modes to help make subtle differences more
+  visible. (This was inspired by feedback by Florian Heiderich.)
+- Can now control the square size for appearance comparisons. Using very
+  small squares can help reveal tiny Appearance differences.
+- Can now control the fill opacity for highlighting.
+- Extended zoom range from 20% to 800% (was 25% to 400%).
+
+1.5.1
+
+Quite a few false-positives have now been eliminated:
+- All hyphens are treated the same now.
+- Some weirdly-encoded open/close double-quotes are treated as normal
+  Unicode open/close double-quotes.
+- Improved whitespace ignoring.
+
+1.5.0
+
+Added Save As action and dialog for saving the differences to a PDF file.
+
+1.3.0
+
+Added support for -a, --appearance, -t, --text command line options to
+set the initial comparison mode.
+
+1.2.3
+
+Added a mention of comparepdf in the About box.
+
+1.2.2
+
+Tiny change in how command line arguments are handled. This should make
+things work with both English and non-English locales on Windows.
+
+1.2.1
+
+Minor improvement with focus control for Previous and Next buttons.
+
+Acknowledged Steven Lee for building Windows binaries and Dirk Loss for
+building Mac OS X binaries in the About box.
+
+1.2.0
+
+Got rid of old text comparison mode.
+
+Various small user interface improvements.
+
+Fixed a subtle bug that meant the combine text highlighting setting
+wasn't saved and restored correctly.
+
+1.1.5
+
+Slightly changed the .pro file to make it a tiny bit more helpful.
+Added a Help button and separated Help and About information.
+Updated the README for Mac users (thanks to Dirk Loss for the info).
+
+1.1.4
+
+Improved the reporting of files that are the same.
+
+1.1.3
+
+Tiny bugfix for Debian.
+
+1.1.2
+
+It is now possible for the user to control whether highlighting is
+combined in text mode.
+
+Added a cache for page images. This makes it much quicker to flick back
+and forth between pages. The cache size can be set by the user: the
+bigger the cache the more pages that can be flicked through without
+recalculating.
+
+1.1.1
+
+Replaced QVariant::toReal() with QVariant::toDouble() to avoid breaking
+compatibility with Qt 4.4.
+
+1.1.0
+
+Added margin rules to indicate where changes are. (These can be turned
+off by setting a rule width of 0.0.)
+
+1.0.0
+
+Implemented the sequence matcher algorithm for text mode matching.
+
+0.6.0
+
+Redid the user interface to use dock widgets.
+
+0.5.0
+
+First release.

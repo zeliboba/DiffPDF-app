@@ -1,0 +1,152 @@
+<h2><font color="darkgreen">DiffPDF</font></h2>
+
+<ul>
+<li><a href="#bas">Basic Usage</a></li>
+<li><a href="#cmp">The Compare Button</a></li>
+<li><a href="#txt">Words Comparison Mode</a></li>
+<li><a href="#chr">Characters Comparison Mode</a></li>
+<li><a href="#vis">Appearance Comparison Mode</a></li>
+<li><a href="#zon">Zoning</a></li>
+<li><a href="#ran">Page Ranges</a></li>
+<li><a href="#opt">The Options Dialog</a></li>
+<li><a href="#dock">Dock Windows</a></li>
+<li><a href="#cli">Command Line Usage</a></li>
+<li><a href="#ack">Acknowledgements</a></li>
+<li><a href="#aut">Author</a></li>
+</ul>
+
+<h3 id="bas">Basic Usage</h3>
+<p><p>Click the <b>File #1</b> button 
+to choose one PDF file and then the <b>File #2</b> button to choose 
+another (ideally very similar) PDF file, then click the 
+<b>Compare</b> button to perform the comparison, and when 
+that's finished, navigate through the pairs of differing pages 
+using the <b>View</b> combobox. 
+
+<h3 id="cmp">The Compare Button</h3>
+<p>
+When the <b>Compare</b> button is pressed, <font
+color="darkgreen">DiffPDF</font> does a high-speed scan of every pair of
+pages (~100 pairs of pages per second on the author's machine). To make
+the scan as fast as possible <font color="darkgreen">DiffPDF</font> does
+a very rough check of each pair of pages&mdash;so it is possible that it
+identifies some false positives (i.e., page pairs that are really the
+same). False positives are quite rare. (There are no false
+negatives&mdash;differences are never missed.)
+
+<h3 id="txt">Words Comparison Mode</h3>
+<p>The default comparison mode is Words which does a smart text 
+comparison word by word for each pair of pages. This mode is 
+fairly liberal regarding 
+whitespace and tries to ignore layout changes (within a page) insofar 
+as possible. It also treats all hyphens (soft-hyphen, minus sign, etc.), 
+the same, that is, as a plain hyphen. 
+This mode is best for alphabetic languages like English.
+
+<h3 id="chr">Characters Comparison Mode</h3>
+<p>The Characters comparison mode does a smart text 
+comparison character by character for each pair of pages. This mode is 
+liberal regarding whitespace at the ends of lines and tries to 
+ignore layout changes (within a page) insofar as possible. 
+It also treats all hyphens (soft-hyphen, minus sign, etc.), 
+the same, that is, as a plain hyphen. 
+This mode is best for logographic languages like Chinese and Japanese.
+
+<h3 id="chr">Appearance Comparison Mode</h3>
+<p>The Appearance comparison mode 
+can be used to detect changes in fonts, diagrams, or any other visual 
+aspects. This mode is absolutely strict and compares each pair of 
+pages pixel 
+for pixel. By default this mode shows differences using highlighting 
+just like the Words and Characters modes do. However, it is also 
+possible to compare using 
+composition modes which can be useful to detect very small and subtle 
+differences that aren't immediately apparent.
+
+<h3 id="zon">Zoning</h3>
+<p>Zoning is an experimental feature designed to produce more accurate
+results (i.e., fewer false positives). Its main use is for pages that
+have tables or that mix alphabetic and logographic text, since these can
+cause the underlying popplar PDF library to provide the page's words
+mixed up. <font color="red">Warning:</font> using zoning for large
+complex pages (bigger than A4, multiple columns, tables) in Characters
+mode can be very slow. (The current focus for the zoning code is
+functionality not efficiency.) Furthermore, in some cases zoning can
+cause an <i>increase</i> in false positives&mdash;this can occur because
+the zoning code reorders the text that is fed to the sequence matcher
+and sometimes the reordering is wrong. Getting this right is
+non-trivial; changing the tolerances may help.
+
+<p>The Tolerance/R value is the maximum distance between text (i.e., word)
+rectangles for the rectangles to be placed in the same zone. Lower
+values create more zones; higher values create fewer zones. More
+zones are  expensive to compute but can produce more accurate 
+results; fewer zones may reduce false positives. The Tolerance/Y value
+is is used for rounding <i>y</i> coordinates to the nearest multiple of
+this value. For example, if Tolerance/Y is 5
+and a word at position (452,137) is followed by a superscript at
+(468,140), both will be treated as having a <i>y</i> coordinate of 140.
+
+<h3 id="ran">Page Ranges</h3>
+<p>By default <font color="darkgreen">DiffPDF</font> compares every pair
+of pages in the two PDFs (or as many pairs of pages as the number of
+pages in the shorter PDF). It is also possible to compare
+particular pages or page ranges. For example, if there are two versions
+of a PDF file, one with pages 1-12 and the other with pages 1-13 because
+of an extra page having been added as page 4, they can be compared by
+specifying two page ranges, 1-12 for the first and 1-3, 5-13 for the
+second. This will make DiffPDF compare pages in the pairs (1, 1), (2,
+2), (3, 3), (4, 5), (5, 6), and so on, to (12, 13).
+
+<h3 id="opt">The Options Dialog</h3>
+<p>This dialog is invoked by clicking the <b>Options</b> button. 
+The dialog supports changing the highlighting color, whether to use 
+a pen or fill or both, and the fill's opacity. The Square Size is used 
+when doing Appearance mode comparisons: the smaller the size the more 
+fine-grained the highlighting is&mdash;and the slower to compute. 
+The Rule width determines the thickness of the margin rules which are 
+used to indicate the vertical position of differences; the rules can 
+be switched off using a Rule width of 0.
+
+<h3 id="dock">Dock Windows</h3>
+<p>The Controls, Actions, and Log views are in dock widgets&mdash;these 
+can be dragged into other dock areas (in which case they will 
+reshape themselves as necessary), or dragged to float free. 
+The Log can also be closed; right click a dock area and check 
+the Log checkbox to open it again.
+
+<h3 id="cli">Command Line Usage</h3>
+<p>Although <font color="darkgreen">DiffPDF</font> is a GUI program, if run from a console with two PDF 
+files listed on the command line, 
+<font color="darkgreen">DiffPDF</font> will start up and 
+immediately compare them in Words mode, or in Appearance mode 
+if their names are preceded with <tt>-a</tt> or 
+<tt>--appearance</tt> on the command line, 
+or in Characters mode if their names are preceded with <tt>-c</tt> or 
+<tt>--character</tt> on the command line.
+<p>If you're specifically looking for a command line PDF comparison 
+tool, e.g., for automated testing, try 
+<a href="http://www.qtrac/eu/comparepdf.html">comparepdf</a>.
+
+<p>There are also debugging options. Use <tt>--debug</tt> to be able to
+see the zones. Use <tt>--debug2</tt> and <tt>--debug3</tt> to write the
+texts in the order they are fed to the sequence matcher into temporary
+files (e.g., <tt>/tmp/page1.txt</tt>, etc.). The text reordering is done
+by the <tt>TextItems::columnZoneYxOrder()</tt> method in the
+<tt>textitem.cpp</tt> file: suggestions for improvement are welcome!
+(Note that when using <tt>--debug3</tt> coordinates are output in
+<i>y</i>, <i>x</i> order.)
+
+<h3 id="ack">Acknowledgements</h3>
+<font color="darkgreen">DiffPDF</font> was inspired by an idea 
+from Jasmin Blanchette, and embodies many of his suggestions. 
+Thanks also to Steven Lee for building Windows versions, 
+Dirk Loss for building Mac OS X versions, and to David Paleino, the 
+original Debian packager. Thanks also to the many users who have 
+provided constructive and useful feedback, much of which has been 
+incorporated into the program. (See the <tt>CHANGES</tt> file.)
+
+<h3 id="aut">Author</h3>
+<p>I hope that you find <font color="darkgreen">DiffPDF</font> 
+useful and easy to work with&mdash;Mark Summerfield 
+(<a href="mailto:mark@qtrac.eu">mark@qtrac.eu</a>).
