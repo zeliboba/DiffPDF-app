@@ -21,7 +21,7 @@ class HelpForm : public QMainWindow
     Q_OBJECT
 
 public:
-    HelpForm(QWidget *parent=0);
+    HelpForm(const QString &language, QWidget *parent=0);
 
 protected:
     void closeEvent(QCloseEvent *event);

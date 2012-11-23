@@ -21,6 +21,7 @@
 #include <QGroupBox>
 #include <QPushButton>
 #include <QSpinBox>
+#include <QTabWidget>
 #include <QVBoxLayout>
 
 
@@ -120,11 +121,11 @@ void OptionsForm::createWidgets()
     ruleWidthSpinBox->setValue(*m_ruleWidth);
 
     showToolTipsCheckBox = new QCheckBox(tr("Show &Tooltips in "
-                                            "the main window"));
+                                            "the Main Window"));
     showToolTipsCheckBox->setChecked(*m_showToolTips);
 
     combineTextHighlightingCheckBox = new QCheckBox(
-            tr("Combine &Highlighting in text modes"));
+            tr("Combine Highlighting in &Text Modes"));
     combineTextHighlightingCheckBox->setChecked(
             *m_combineTextHighlighting);
 
@@ -139,33 +140,46 @@ void OptionsForm::createWidgets()
 
     buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|
                                      QDialogButtonBox::Cancel);
+    tabWidget = new QTabWidget;
 }
 
 
 void OptionsForm::createLayout()
 {
-    QFormLayout *mainLayout = new QFormLayout;
-    mainLayout->addRow(tr("&Base Color:"), colorComboBox);
-    mainLayout->addRow(tr("Out&line:"), penStyleComboBox);
-    mainLayout->addRow(tr("&Fill:"), brushStyleComboBox);
-    mainLayout->addRow(tr("F&ill Opacity:"), alphaSpinBox);
-    mainLayout->addRow(tr("&Square Size:"), squareSizeSpinBox);
-    mainLayout->addRow(tr("&Rule width:"), ruleWidthSpinBox);
-    mainLayout->addRow(combineTextHighlightingCheckBox);
-    QGroupBox *box = new QGroupBox(tr("Highlighting"));
-    box->setToolTip(tr("<p>The outline and fill are used to highlight "
+    QFormLayout *generalLayout = new QFormLayout;
+    generalLayout->addRow(showToolTipsCheckBox);
+    generalLayout->addRow(tr("&Rule width:"), ruleWidthSpinBox);
+    QWidget *widget = new QWidget;
+    widget->setLayout(generalLayout);
+    tabWidget->addTab(widget, tr("&General"));
+
+    QFormLayout *highlightingLayout = new QFormLayout;
+    highlightingLayout->addRow(tr("&Base Color:"), colorComboBox);
+    highlightingLayout->addRow(tr("O&utline:"), penStyleComboBox);
+    highlightingLayout->addRow(tr("&Fill:"), brushStyleComboBox);
+    highlightingLayout->addRow(tr("F&ill Opacity:"), alphaSpinBox);
+    highlightingLayout->addRow(combineTextHighlightingCheckBox);
+    widget = new QWidget;
+    widget->setToolTip(tr("<p>The outline and fill are used to highlight "
             "differences using a semi-transparent version of the base "
             "color. The margin rules are painted using the base color  "
             "and indicate where changes are. Set the rule width to 0.0 "
             "to switch the rules off. If combining highlighting is "
             "checked it will try to merge the highlighting of adjacent "
             "text differences."));
-    box->setLayout(mainLayout);
-    QFormLayout *layout = new QFormLayout;
-    layout->addRow(box);
-    layout->addRow(showToolTipsCheckBox);
-    layout->addRow(tr("C&ache Size:"), cacheSizeSpinBox);
-    layout->addRow(buttonBox);
+    widget->setLayout(highlightingLayout);
+    tabWidget->addTab(widget, tr("&Highlighting"));
+
+    QFormLayout *performanceLayout = new QFormLayout;
+    performanceLayout->addRow(tr("&Square Size:"), squareSizeSpinBox);
+    performanceLayout->addRow(tr("C&ache Size:"), cacheSizeSpinBox);
+    widget = new QWidget;
+    widget->setLayout(performanceLayout);
+    tabWidget->addTab(widget, tr("&Performance"));
+
+    QVBoxLayout *layout = new QVBoxLayout;
+    layout->addWidget(tabWidget);
+    layout->addWidget(buttonBox);
     setLayout(layout);
 }
 

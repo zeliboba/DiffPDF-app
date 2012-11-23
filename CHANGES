@@ -1,3 +1,38 @@
+2.1.1
+
+- Tiny bug fix to make sure that the help file is in the right language.
+
+2.1.0
+
+- Dragging and and dropping files from Windows Explorer, Thunar, etc.,
+  now works (at least for me, on Windows 7 and Xubuntu).
+
+- Updated Czech translation from Pavel Fric.
+
+- French translation from Pierre-Alain Bandinelli.
+
+- German translation (and many suggestions) from Rainer Krachten.
+
+- Translations should "just work"; i.e., if you use a French locale then
+  the user interface and help text should appear in French. However, you
+  can force DiffPDF to use any language it supports by using the
+  --language command line option (e.g., --language=fr). If an
+  unsupported locale or --language option is used, DiffPDF will fall
+  back to English.
+
+- Now support -h as a synonym for --help.
+
+- Initial path defaults to home directory instead of DiffPDF's
+  installation directory.
+
+- Improved the Options dialog's layout.
+
+- A subtle bugfix to the --words command line option.
+
+- Fixed a crash: clicking to set a margin when there're no PDFs loaded
+  now safely does nothing.
+
+
 2.0.0
 
 - Can now have comparisons exclude text that's outside user-specified

@@ -16,7 +16,6 @@
 #include <QDragEnterEvent>
 #include <QMouseEvent>
 
-
 Label::Label(QWidget *parent) : QLabel(parent)
 {
     setAcceptDrops(true);
@@ -24,14 +23,16 @@ Label::Label(QWidget *parent) : QLabel(parent)
 
 void Label::dragEnterEvent(QDragEnterEvent *event)
 {
-    if (event->mimeData()->hasFormat("text/plain"))
+    const QMimeData *mimeData = event->mimeData();
+    if (mimeData->hasFormat("text/plain") ||
+        mimeData->hasFormat("text/uri-list"))
         event->acceptProposedAction();
 }
 
 
 void Label::dropEvent(QDropEvent *event)
 {
-    QStringList filenames = strippedFilenames(event->mimeData()->text());
+    QStringList filenames = droppedFilenames(event->mimeData());
     if (!filenames.isEmpty())
         emit filenamesDropped(filenames);
     event->acceptProposedAction();

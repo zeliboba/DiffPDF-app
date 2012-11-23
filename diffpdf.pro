@@ -27,15 +27,18 @@ HEADERS	     += label.hpp
 SOURCES	     += label.cpp
 RESOURCES    += resources.qrc
 TRANSLATIONS += diffpdf_cz.ts
+TRANSLATIONS += diffpdf_fr.ts
+TRANSLATIONS += diffpdf_de.ts
+CODECFORTR    = UTF-8
 LIBS	     += -lpoppler-qt4
 win32 {
     CONFIG += release
 }
-exists($(HOME)/opt/poppler018/) {
+exists($(HOME)/opt/poppler020/) {
     message(Using locally built Poppler library)
-    INCLUDEPATH += $(HOME)/opt/poppler018/include/poppler/cpp
-    INCLUDEPATH += $(HOME)/opt/poppler018/include/poppler/qt4
-    LIBS += -Wl,-rpath -Wl,$(HOME)/opt/poppler018/lib -Wl,-L$(HOME)/opt/poppler018/lib
+    INCLUDEPATH += $(HOME)/opt/poppler020/include/poppler/cpp
+    INCLUDEPATH += $(HOME)/opt/poppler020/include/poppler/qt4
+    LIBS += -Wl,-rpath -Wl,$(HOME)/opt/poppler020/lib -Wl,-L$(HOME)/opt/poppler020/lib
 } else {
     exists(/poppler_lib) {
 	message(Using locally built Poppler library on Windows)

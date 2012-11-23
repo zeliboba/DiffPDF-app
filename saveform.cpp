@@ -60,7 +60,7 @@ void SaveForm::createWidgets()
     filenameLineEdit = new QLineEdit;
     filenameLineEdit->setText(*m_filename);
     filenameLabel->setBuddy(filenameLineEdit);
-    chooseFileButton = new QPushButton(tr("&Save As..."));
+    chooseFileButton = new QPushButton(tr("B&rowse..."));
     buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok|
                                      QDialogButtonBox::Cancel);
 }
@@ -116,7 +116,7 @@ void SaveForm::chooseFile()
     foreach (const QByteArray &format, formats)
         suffixes << "*." + QString(format.toLower());
     QString filename = QFileDialog::getSaveFileName(this,
-            tr("DiffPDF — Save"), m_path,
+            tr("DiffPDF — Browse"), m_path,
             tr("PDF files (*.pdf);;Image files (%1)")
             .arg(suffixes.join(" ")));
     if (!filename.isEmpty()) {

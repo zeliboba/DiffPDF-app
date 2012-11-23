@@ -25,15 +25,43 @@ Options...
 About
 Quit
 
-# Options Dialog
+# Options General Tab
+General
+Highlighting
+Performance
+Show &Tooltips in main window
+Rule Width
+&Cancel
+&OK
+
+# Options Highlighting Tab
+General
+Highlighting
+Performance
 Base Color
-Out&line
+Outline
 &Fill
 Fill Opacity
+Combine Highlighting in Text Modes
+&Cancel
+&OK
+
+# Options Highlighting Tab
+General
+Highlighting
+Performance
 Square Size
-Rule width
-Combine Highlighting in Text Mode
-Show &Tooltips in main window
 Cache Size
+&Cancel
+&OK
+
+# Save As Dialog
+Current Page Pair
+All Page Pairs
+File #&1's Pages
+File #&2's Pages
+Both File's Pages
+Filename
+Browse...
 &Cancel
 &OK

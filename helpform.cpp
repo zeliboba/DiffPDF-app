@@ -18,18 +18,25 @@
 #include <QSettings>
 #include <QShortcut>
 #include <QTextBrowser>
+#include <QTextStream>
 
 
-HelpForm::HelpForm(QWidget *parent) : QMainWindow(parent)
+HelpForm::HelpForm(const QString &language, QWidget *parent)
+    : QMainWindow(parent)
 {
     setAttribute(Qt::WA_DeleteOnClose);
     QTextBrowser *viewer = new QTextBrowser;
-    QFile file(":/help.html");
+    QString filename = QString(":/help_%1.html").arg(language);
+    if (!QFile::exists(filename))
+        filename = ":/help.html";
+    QFile file(filename);
     file.open(QIODevice::ReadOnly|QIODevice::Text);
-    viewer->setHtml(file.readAll());
+    QTextStream in(&file);
+    in.setCodec("UTF-8");
+    viewer->setHtml(in.readAll());
     viewer->setReadOnly(true);
     setCentralWidget(viewer);
-    (void) new QShortcut(QKeySequence(tr("Escape")), this, SLOT(close()));
+    (void) new QShortcut(QKeySequence("Escape"), this, SLOT(close()));
     QPoint pos(0, 0);
     if (parent)
         pos = parent->pos();

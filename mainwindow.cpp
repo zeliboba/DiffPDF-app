@@ -25,6 +25,7 @@
 #include <QBoxLayout>
 #include <QCheckBox>
 #include <QComboBox>
+#include <QDir>
 #include <QDockWidget>
 #include <QEvent>
 #include <QFileDialog>
@@ -48,15 +49,17 @@
 MainWindow::MainWindow(const Debug debug,
         const InitialComparisonMode comparisonMode,
         const QString &filename1, const QString &filename2,
-        QWidget *parent)
-    : QMainWindow(parent), currentPath("."),
+        const QString &language, QWidget *parent)
+    : QMainWindow(parent),
       controlDockArea(Qt::RightDockWidgetArea),
       actionDockArea(Qt::RightDockWidgetArea),
       marginsDockArea(Qt::RightDockWidgetArea),
       zoningDockArea(Qt::RightDockWidgetArea),
       logDockArea(Qt::RightDockWidgetArea), cancel(false),
-      saveAll(true), savePages(SaveBothPages), debug(debug)
+      saveAll(true), savePages(SaveBothPages), language(language),
+      debug(debug)
 {
+    currentPath = QDir::homePath();
     QSettings settings;
     pen.setStyle(Qt::NoPen);
     pen.setColor(Qt::red);
@@ -194,13 +197,13 @@ void MainWindow::createWidgets(const QString &filename1,
             QPainter::RasterOp_SourceXorDestination);
     showLabel->setBuddy(showComboBox);
     showComboBox->setToolTip(showLabel->toolTip());
-    previousButton = new QPushButton("Previo&us");
+    previousButton = new QPushButton(tr("Previo&us"));
     previousButton->setToolTip(
             "<p>Navigate to the previous pair of pages.");
 #if QT_VERSION >= 0x040600
     previousButton->setIcon(QIcon(":/left.png"));
 #endif
-    nextButton = new QPushButton("Ne&xt");
+    nextButton = new QPushButton(tr("Ne&xt"));
     nextButton->setToolTip("<p>Navigate to the next pair of pages.");
 #if QT_VERSION >= 0x040600
     nextButton->setIcon(QIcon(":/right.png"));
@@ -222,12 +225,13 @@ void MainWindow::createWidgets(const QString &filename1,
                 "eliminate false positives particularly for pages "
                 "that have tables or that mix alphabetic and "
                 "logographic languages&mdash;it can also increase "
-                "false positives!"));
+                "false positives! Zoning only applies to text "
+                "comparisons."));
     zoningGroupBox->setCheckable(true);
     zoningGroupBox->setChecked(false);
     columnsLabel = new QLabel(tr("Co&lumns:"));
     columnsSpinBox = new QSpinBox;
-    columnsSpinBox->setRange(1, 6);
+    columnsSpinBox->setRange(1, 16);
     columnsSpinBox->setValue(settings.value("Columns", 1).toInt());
     columnsSpinBox->setAlignment(Qt::AlignVCenter|Qt::AlignRight);
     columnsSpinBox->setToolTip(tr("<p>Use this to tell DiffPDF how "
@@ -1481,8 +1485,12 @@ void MainWindow::compareUpdateUi(const QPair<int, int> &pair,
     }
 
     compareButton->setText(tr("&Compare"));
-    statusLabel->setText(tr("%1 differ%2 %3/%4 compared").arg(differ)
-            .arg(differ == 1 ? "s" : "").arg(pair.first).arg(pair.second));
+    if (differ == 1) // Separated the cases for ease of translation
+        statusLabel->setText(tr("1 differs %1/%2 compared").arg(pair.first)
+                .arg(pair.second));
+    else
+        statusLabel->setText(tr("%1 differ %2/%3 compared").arg(differ)
+                .arg(pair.first).arg(pair.second));
     saveButton->setEnabled(true);
     updateUi();
     if (!cancel)
@@ -1739,7 +1747,7 @@ bool MainWindow::paintSaveAs(QPainter *painter, const int index,
 
 void MainWindow::help()
 {
-    HelpForm *form = new HelpForm(this);
+    HelpForm *form = new HelpForm(language, this);
     form->show();
 }
 
@@ -1860,7 +1868,8 @@ void MainWindow::showMargins(QLabel *label)
 
 void MainWindow::setAMargin(const QPoint &pos)
 {
-    if (!marginsGroupBox->isChecked())
+    if (!marginsGroupBox->isChecked() || !page1Label->pixmap() ||
+        page1Label->pixmap()->isNull())
         return;
     const int DPI = static_cast<int>(POINTS_PER_INCH *
                 (zoomSpinBox->value() / 100.0));

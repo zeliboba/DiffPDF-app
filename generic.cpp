@@ -11,10 +11,12 @@
 */
 
 #include "generic.hpp"
+#include <QMimeData>
 #include <QRectF>
 #include <QPainter>
 #include <QPen>
 #include <QPixmapCache>
+#include <QUrl>
 
 const QSize SwatchSize(24, 24);
 
@@ -156,19 +158,35 @@ const TextBoxList getTextBoxes(PdfPage page, const QRectF &rect)
 }
 
 
-const QStringList strippedFilenames(const QString &filenames)
+const QString strippedFilename(const QString &filename)
 {
     const QString FilePrefix("file://");
-    QStringList files = filenames.split("\n");
-    for (int i = 0; i < files.count(); ++i) {
-        QString &filename = files[i];
-        if (filename.startsWith(FilePrefix))
-            filename = filename.mid(FilePrefix.length());
-        filename = filename.trimmed();
-    }
-    return files;
+    QString filename_ = filename;
+    if (filename_.startsWith(FilePrefix))
+        filename_ = filename_.mid(FilePrefix.length());
+#ifdef Q_WS_WIN
+    if (filename_.startsWith("/"))
+        filename_ = filename_.mid(1);
+#endif
+    return filename_.trimmed();
 }
 
+
+const QStringList droppedFilenames(const QMimeData *mimeData)
+{
+    QStringList filenames;
+    QString text = mimeData->text();
+    if (!text.isEmpty()) {
+        filenames = text.split("\n");
+        for (int i = 0; i < filenames.count(); ++i)
+            filenames[i] = strippedFilename(filenames.at(i));
+    }
+    else {
+        foreach (const QUrl &url, mimeData->urls())
+            filenames << strippedFilename(url.toString());
+    }
+    return filenames;
+}
 
 // Returns a copy of pageRect reduced if necessary to have the same
 // aspect ratio as pixmapSize.

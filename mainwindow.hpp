@@ -49,7 +49,7 @@ public:
     MainWindow(const Debug debug,
             const InitialComparisonMode comparisonMode,
             const QString &filename1, const QString &filename2,
-            QWidget *parent=0);
+            const QString &language, QWidget *parent=0);
 
 protected:
     void closeEvent(QCloseEvent *event);
@@ -208,6 +208,7 @@ private:
     QString saveFilename;
     bool saveAll;
     SavePages savePages;
+    const QString language;
     Debug debug;
 };
 

@@ -20,7 +20,7 @@
 #include <QTextBrowser>
 
 
-static const QString Version("2.0.0");
+static const QString Version("2.1.1");
 
 
 AboutForm::AboutForm(QWidget *parent) : QDialog(parent)
@@ -55,23 +55,33 @@ AboutForm::AboutForm(QWidget *parent) : QDialog(parent)
             .arg(Version).arg(qVersion()).arg(POPPLER_VERSION));
     QTextBrowser *contributorsBrowser = new QTextBrowser;
     contributorsBrowser->setReadOnly(true);
-    contributorsBrowser->setHtml(tr("<ul>"
-    "<li><i>Anonymous Company</i> &mdash; funded the addition of the "
-    "margin exclusion functionality</li>"
-    "<li>Liviu Andronic &mdash; suggested adding drag and drop</li>"
-    "<li><b>Jasmin Blanchette</b> &mdash; the original idea and "
-    "subsequent suggestions</li>"
-    "<li>Pavel Fric &mdash; Czech translation</li>"
-    "<li>Rory Gordon &mdash; suggested adding drag and drop</li>"
-    "<li>Florian Heiderich &mdash; suggested using composition modes for "
-    "showing subtle differences</li>"
-    "<li>Paul Howarth &mdash; suggestions resulting in Characters "
-    "mode</li>"
-    "<li><b>Steven Lee</b> &mdash; creating Windows binaries</li>"
-    "<li><b>Dirk Loss</b> &mdash; creating Mac binaries</li>"
-    "<li>David Paleino &mdash; Debian packager</li>"
-    "</ul>"));
-    //"<li> &mdash; </li>"
+    contributorsBrowser->setHtml(tr("<table>"
+    "<tr><td>&bull;</td><td bgcolor=lightyellow><i>Anonymous Company</i> "
+    "&mdash; funded the addition of the margin exclusion "
+    "functionality</td></tr>"
+    "<tr><td>&bull;</td><td><b>David Paleino</b> &mdash; "
+    "Debian packager</td></tr>"
+    "<tr><td>&bull;</td><td><b>Dirk Loss</b> &mdash; creating "
+    "Mac binaries</td></tr>"
+    "<tr><td>&bull;</td><td>Florian Heiderich &mdash; suggested "
+    "using composition modes for showing subtle differences</td></tr>"
+    "<tr><td>&bull;</td><td><b>Jasmin Blanchette</b> &mdash; "
+    "the original idea and subsequent suggestions</td></tr>"
+    "<tr><td>&bull;</td><td>Liviu Andronic &mdash; suggested adding "
+    "drag and drop</td></tr>"
+    "<tr><td>&bull;</td><td>Paul Howarth &mdash; suggestions "
+    "resulting in Characters mode</td></tr>"
+    "<tr><td>&bull;</td><td bgcolor=\"#F0F0F0\"><i>Pavel Fric</i> &mdash; "
+    "Czech translation</td></tr>"
+    "<tr><td>&bull;</td><td bgcolor=\"#F0F0F0\"><i>Pierre-Alain</i> "
+    "Bandinelli&mdash; French translation</td></tr>"
+    "<tr><td>&bull;</td><td bgcolor=\"#F0F0F0\"><i>Rainer Krachten</i> "
+    "&mdash; German translation and various suggestions</td></tr>"
+    "<tr><td>&bull;</td><td>Rory Gordon &mdash; suggested adding "
+    "drag and drop</td></tr>"
+    "<tr><td>&bull;</td><td><b>Steven Lee</b> &mdash; creating "
+    "Windows binaries</td></tr>"
+    "</table>"));
     QTextBrowser *licenceBrowser = new QTextBrowser;
     licenceBrowser->setReadOnly(true);
     licenceBrowser->setHtml(tr(

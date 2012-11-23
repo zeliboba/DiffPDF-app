@@ -21,6 +21,7 @@ class QComboBox;
 class QDialogButtonBox;
 class QDoubleSpinBox;
 class QSpinBox;
+class QTabWidget;
 
 
 class OptionsForm : public QDialog
@@ -46,6 +47,7 @@ private:
     void createLayout();
     void createConnections();
 
+    QTabWidget *tabWidget;
     QComboBox *colorComboBox;
     QComboBox *brushStyleComboBox;
     QComboBox *penStyleComboBox;

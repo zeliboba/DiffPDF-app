@@ -23,14 +23,16 @@ LineEdit::LineEdit(QWidget *parent) : QLineEdit(parent)
 
 void LineEdit::dragEnterEvent(QDragEnterEvent *event)
 {
-    if (event->mimeData()->hasFormat("text/plain"))
+    const QMimeData *mimeData = event->mimeData();
+    if (mimeData->hasFormat("text/plain") ||
+        mimeData->hasFormat("text/uri-list"))
         event->acceptProposedAction();
 }
 
 
 void LineEdit::dropEvent(QDropEvent *event)
 {
-    QStringList filenames = strippedFilenames(event->mimeData()->text());
+    QStringList filenames = droppedFilenames(event->mimeData());
     if (!filenames.isEmpty())
         emit filenamesDropped(filenames);
     event->acceptProposedAction();

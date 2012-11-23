@@ -51,17 +51,17 @@ int main(int argc, char *argv[])
         else if (optionsOK && (arg == "--characters" || arg == "-c"))
             comparisonMode = CompareCharacters;
         else if (optionsOK && (arg == "--words" || arg == "-w"))
-            ; // comparisonMode = CompareWords; // this is the default
+            comparisonMode = CompareWords;
         else if (optionsOK && arg.startsWith(LanguageOption))
             language = arg.mid(LanguageOption.length());
-        else if (optionsOK && arg == "--help") {
+        else if (optionsOK && (arg == "--help" || arg == "-h")) {
             out << "usage: diffpdf [options] [file1.pdf [file2.pdf]]\n\n"
                 "A GUI program that compares two PDF files and shows "
                 "their differences.\n"
                 "\nThe files are optional and are normally set "
                 "through the user interface.\n\n"
                 "options:\n"
-                "--help             show this usage text and terminate "
+                "--help        -h   show this usage text and terminate "
                 "(run the program without this option and press F1 for "
                 "online help)\n"
                 "--appearance  -a   set the initial comparison mode to "
@@ -109,7 +109,8 @@ int main(int argc, char *argv[])
     appTranslator.load("diffpdf_" + language, ":/");
     app.installTranslator(&appTranslator);
 
-    MainWindow window(debug, comparisonMode, filename1, filename2);
+    MainWindow window(debug, comparisonMode, filename1, filename2,
+            language.left(2)); // We want de not de_DE etc.
     window.show();
     return app.exec();
 }

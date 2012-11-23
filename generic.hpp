@@ -19,6 +19,7 @@
 #include <QSet>
 
 class QColor;
+class QMimeData;
 class QRectF;
 
 #if QT_VERSION >= 0x040600
@@ -86,7 +87,8 @@ QPixmap penStyleSwatch(const Qt::PenStyle style, const QColor &color);
 
 const TextBoxList getTextBoxes(PdfPage page, const QRectF &rect=QRect());
 
-const QStringList strippedFilenames(const QString &filenames);
+const QString strippedFilename(const QString &filename);
+const QStringList droppedFilenames(const QMimeData *mimeData);
 const QRect resizeRect(const QRect &pageRect, const QSize &pixmapSize);
 
 /* // Not needed
